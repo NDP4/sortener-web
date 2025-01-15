@@ -12,9 +12,9 @@ services:
       - ./:/var/www/html
     environment:
       - MYSQL_HOST=db
-      - MYSQL_DATABASE=shortener
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=user
+      - MYSQL_DATABASE=your-database
+      - MYSQL_USER=your-user
+      - MYSQL_PASSWORD=your-user
     depends_on:
       - db
     restart: unless-stopped
@@ -24,15 +24,15 @@ services:
     container_name: sortlink_db
     platform: linux/arm64
     environment:
-      - MARIADB_DATABASE=shortener
-      - MARIADB_USER=user
-      - MARIADB_PASSWORD=user
-      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=your-database
+      - MARIADB_USER=your-user
+      - MARIADB_PASSWORD=your-password
+      - MARIADB_ROOT_PASSWORD=your-root-password
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
-    command: '--default-authentication-plugin=mysql_native_password'
+    command: "--default-authentication-plugin=mysql_native_password"
     restart: unless-stopped
 
   adminer:
