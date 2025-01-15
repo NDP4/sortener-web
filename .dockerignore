@@ -1,0 +1,8 @@
+.git
+.gitignore
+.env
+*.md
+.DS_Store
+urls.db
+docker-compose.yml
+Dockerfile

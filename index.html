@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDP Shortener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#4f46e5',
+                        surface: '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen font-sans">
+    <div class="container mx-auto px-4 h-screen flex items-center justify-center">
+        <div class="w-full max-w-lg">
+            <div
+                class="bg-surface rounded-3xl shadow-2xl p-8 space-y-8 animate__animated animate__fadeIn backdrop-blur-sm bg-white/90">
+                <div class="text-center space-y-2">
+                    <div class="flex justify-center mb-4">
+                        <span class="material-icons text-5xl text-primary">link</span>
+                    </div>
+                    <h1 class="text-4xl font-bold text-gray-800">NDP Shortener</h1>
+                    <p class="text-gray-500">Create short and memorable links in seconds</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="group relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span
+                                class="material-icons text-gray-400 group-focus-within:text-primary transition-colors">link</span>
+                        </div>
+                        <input type="url" id="urlInput"
+                            class="w-full pl-12 pr-20 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white/50 backdrop-blur-sm"
+                            placeholder="Enter your long URL here">
+                        <button onclick="pasteFromClipboard()" id="pasteBtn"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg flex items-center space-x-1 transition-all">
+                            <span class="material-icons text-sm">content_paste</span>
+                            <span>Paste</span>
+                        </button>
+                    </div>
+
+                    <div class="group relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span
+                                class="material-icons text-gray-400 group-focus-within:text-primary transition-colors">edit</span>
+                        </div>
+                        <input type="text" id="customName"
+                            class="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white/50 backdrop-blur-sm"
+                            placeholder="Enter custom name (optional)">
+                    </div>
+
+                    <button onclick="shortenUrl()" id="shortenBtn"
+                        class="w-full bg-primary hover:bg-secondary text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 relative overflow-hidden group shadow-lg hover:shadow-xl">
+                        <span class="inline-flex items-center transition-all duration-300" id="btnText">
+                            <span class="material-icons mr-2">link</span>
+                            Shorten URL
+                        </span>
+                        <span
+                            class="absolute flex items-center justify-center w-full h-full transition-all duration-300 transform scale-0 bg-secondary rounded-xl group-disabled:scale-100"
+                            id="btnLoading">
+                            <div class="flex items-center space-x-2">
+                                <span class="material-icons animate-spin">autorenew</span>
+                                <span>Processing...</span>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+
+                <div id="result" class="hidden animate__animated">
+                    <div class="p-6 bg-indigo-50/50 rounded-xl mt-4 backdrop-blur-sm">
+                        <p id="shortUrl" class="text-gray-700 break-all text-center text-lg font-medium"></p>
+                        <button id="copyBtn" onclick="copyToClipboard()"
+                            class="mt-4 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl">
+                            <span class="material-icons">content_copy</span>
+                            <span>Copy URL</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center text-sm text-gray-500 mt-8">
+                    Made with <span class="text-red-500">♥</span> by NDP Team
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="fixed bottom-4 right-4 transform transition-all duration-300 translate-y-full opacity-0">
+        <div class="bg-gray-800 text-white px-6 py-3 rounded-xl shadow-lg flex items-center space-x-2">
+            <span class="material-icons text-green-400">check_circle</span>
+            <span id="toastMessage">URL copied to clipboard!</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
