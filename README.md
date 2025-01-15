@@ -2,7 +2,7 @@
 
 Layanan pemendek URL modern, cepat, dan ramah pengguna yang dibangun dengan PHP, MySQL, dan antarmuka pengguna yang responsif.
 
-![NDP Shortener](https://raw.githubusercontent.com/NDP4/sortener-web/image.png)
+![NDP Shortener](image.png)
 
 ## Fitur
 
